@@ -106,6 +106,49 @@ class Stack_list:
 
 
 
+# Implement Queue using two stacks : Leetcode Problem
+class MyQueue(object):
+
+    def __init__(self):
+        self.stack1 = [] #holds the main input 2 1 2 3
+        self.stack2 = []
+        
+    def push(self, x): #enqueue
+        """
+        :type x: int
+        :rtype: None
+        """
+        self.stack1.append(x)
+        
+    def pop(self): #dequeue
+        """
+        :rtype: int
+        """
+        if len(self.stack2) == 0:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+        return self.stack2.pop()
+        
+
+    def peek(self):
+        """
+        :rtype: int
+        """
+        if len(self.stack2) == 0:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+        return self.stack2[-1]
+        
+        
+
+    def empty(self):
+        """
+        :rtype: bool
+        """
+        return len(self.stack1) + len(self.stack2) == 0
+
+
+
 
 #### WRITE SORT_STACK FUNCTION HERE #####
 def sort_stack(my_stack):
