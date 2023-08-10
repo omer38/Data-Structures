@@ -10,7 +10,7 @@ class Node:
         self.value = value
         self.next = None
         
-class Stack:
+class Stack_LL:
     def __init__(self,value):
         new_node = Node(value)
         self.top = new_node
@@ -74,14 +74,53 @@ class Queue:
             temp.next = None
         self.length -= 1
         return temp
-    
-        
-    
-my_stack = Queue(7)
-my_stack.enqueue(23)
-my_stack.dequeue()
 
-my_stack.print_queue()
+class Stack_list:
+    def __init__(self):
+        self.stack_list = []
+
+    def print_stack(self):
+        for i in range(len(self.stack_list)-1, -1, -1):
+            print(self.stack_list[i])
+
+    def is_empty(self):
+        return len(self.stack_list) == 0
+
+    def peek(self):
+        if self.is_empty():
+            return None
+        else:
+            return self.stack_list[-1]
+
+    def size(self):
+        return len(self.stack_list)
+
+    def push(self, value):
+        self.stack_list.append(value)
+
+    def pop(self):
+        if self.is_empty():
+            return None
+        else:
+            return self.stack_list.pop()
+
+
+
+
+#### WRITE SORT_STACK FUNCTION HERE #####
+def sort_stack(my_stack):
+    sorted_stack = Stack()
+    while not my_stack.is_empty():
+        temp = my_stack.pop()
+        while not sorted_stack.is_empty() and sorted_stack.peek() > temp:
+            my_stack.push(sorted_stack.pop())
+            
+        sorted_stack.push(temp)
+        
+    while not sorted_stack.is_empty():
+        my_stack.push(sorted_stack.pop())
+    
+
 
 
 
