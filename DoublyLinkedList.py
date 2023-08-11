@@ -90,14 +90,16 @@ class DoublyLinkedList:
             return self.prepend(value)
         if index == self.length:
             return self.append(value)
+        temp = self.head
+        count = 0
         new_node = Node(value)
-        before = self.get(index - 1)
-        after = before.next
-        before.next = new_node
-        new_node.prev = before
-        new_node.next = after
-        after.prev = new_node
-        self.length += 1
+        while temp is not None:
+            if count == index:
+                temp.next = new_node
+                new_node.next = temp.next
+                return
+            temp = temp.next
+            count+=1
         return True
     
     def remove(self,index):
