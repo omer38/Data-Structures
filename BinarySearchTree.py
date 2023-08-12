@@ -46,6 +46,25 @@ class BinarySearchTree:
                 return True
         return False
 
+#Inorder traversal of the Binary Tree => they will be sorted in ascending order in Binary Search Tree
+def inorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        #Iterative solution
+        ans = []
+        stack = []
+        curr = root
+        while curr or stack:
+            while curr: # go left until reach left leaf
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop() # go back to the one above
+            ans.append(curr.val)
+            curr = curr.right #check its right value append it then check left again
+        return ans
+
 
 my_tree = BinarySearchTree()
 my_tree.insert(47)
